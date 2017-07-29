@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 if ($rootScope.urlParams) {
                   return $rootScope.urlParams;
                 } else {
-                  return "not present";
+                  return "Frozen Ghost";
                 }
               }
             }
