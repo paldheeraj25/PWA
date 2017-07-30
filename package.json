@@ -16,5 +16,8 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-splashscreen"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [],
+  "dependencies": {
+    "angularfire": "^2.3.0"
+  }
 }

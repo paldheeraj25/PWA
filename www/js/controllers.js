@@ -1,8 +1,9 @@
 angular.module('starter.controllers', [])
 
-  .controller('DashCtrl', function ($scope, urlParam, $state) {
+  .controller('DashCtrl', function ($scope, urlParam, imageUrl, $state) {
     //$state.reload();
-    $scope.urlParam = urlParam;
+    $scope.urlParam = urlParam.name;
+    $scope.imageUrl = imageUrl;
   })
 
   .controller('ChatsCtrl', function ($scope, Chats) {

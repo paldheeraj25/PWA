@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -22,7 +22,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     });
   })
-
+  .config(function () {
+    var config = {
+      apiKey: "AIzaSyBiQNOs0GGDXUrlriwsWvS2v-Z_mDj55bU",
+      authDomain: "sealedbit-3b63c.firebaseapp.com",
+      databaseURL: "https://sealedbit-3b63c.firebaseio.com",
+      projectId: "sealedbit-3b63c",
+      storageBucket: "sealedbit-3b63c.appspot.com",
+      messagingSenderId: "102951832251"
+    };
+    firebase.initializeApp(config);
+  })
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $locationProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -56,9 +66,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             resolve: {
               urlParam: function ($rootScope) {
                 if ($rootScope.urlParams) {
-                  return $rootScope.urlParams;
+                  $rootScope.urlParams = $rootScope.urlParams.substr(1);
+                  var ref = firebase.database().ref().child('product');
+                  var storage = firebase.storage().ref().child('product_image');
+                  return ref.child($rootScope.urlParams).once('value').then(function (snapshot) {
+                    if (snapshot.val() !== null) {
+                      var productObject = snapshot.val();
+                      return productObject;
+                    }
+                  });
                 } else {
-                  return "Frozen Ghost";
+                  return { name: "Frozen Ghost" };
+                }
+              },
+              imageUrl: function ($rootScope) {
+                if ($rootScope.urlParams) {
+                  //$rootScope.urlParams = $rootScope.urlParams.substr(1);
+                  var ref = firebase.database().ref().child('product');
+                  var storage = firebase.storage().ref().child('product_image');
+                  return storage.child($rootScope.urlParams).child('bottle.jpg').getDownloadURL().then(function (data) {
+                    return data;
+                  });
+                } else {
+                  return "http://1.bp.blogspot.com/-x0qgbWJI6ZY/TlL86fmHErI/AAAAAAAAygc/hUIEBa8DXnM/s1600/lovely-package-frozen-ghost-vodka1-e1313218158662.jpg";
                 }
               }
             }
