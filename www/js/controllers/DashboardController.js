@@ -1,9 +1,10 @@
 angular.module('starter.controllers')
 
-  .controller('DashCtrl', function ($scope, $state, $stateParams, $http) {
+  .controller('DashCtrl', function ($scope, $state, $stateParams, $http, $location) {
+    //console.log($location.host());
     var req = {
       method: 'GET',
-      url: 'http://localhost:3333/api/products/' + $stateParams.id,
+      url: 'http://' + $location.host() + ':3333/api/products/' + $stateParams.id,
       headers: {
         'id': $stateParams.id
       }
