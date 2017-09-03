@@ -3,7 +3,7 @@ angular.module('starter.controllers')
   .controller('DashCtrl', function ($scope, $state, $stateParams, $http) {
     var req = {
       method: 'GET',
-      url: 'http://35.161.235.83:3333/api/products/' + $stateParams.id,
+      url: '/api/products/' + $stateParams.id,
       headers: {
         'id': $stateParams.id
       }
