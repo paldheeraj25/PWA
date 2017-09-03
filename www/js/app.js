@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -21,17 +21,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         StatusBar.styleDefault();
       }
     });
-  })
-  .config(function () {
-    var config = {
-      apiKey: "AIzaSyBiQNOs0GGDXUrlriwsWvS2v-Z_mDj55bU",
-      authDomain: "sealedbit-3b63c.firebaseapp.com",
-      databaseURL: "https://sealedbit-3b63c.firebaseio.com",
-      projectId: "sealedbit-3b63c",
-      storageBucket: "sealedbit-3b63c.appspot.com",
-      messagingSenderId: "102951832251"
-    };
-    firebase.initializeApp(config);
   })
   .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $locationProvider) {
 
@@ -58,40 +47,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // Each tab has its own nav history stack:
 
       .state('tab.dash', {
-        url: '/dash',
+        url: '/dash/:id',
         views: {
           'tab-dash': {
             templateUrl: 'templates/tab-dash.html',
-            controller: 'DashCtrl',
-            resolve: {
-              urlParam: function ($rootScope) {
-                if ($rootScope.urlParams) {
-                  $rootScope.urlParams = $rootScope.urlParams.substr(1);
-                  var ref = firebase.database().ref().child('product');
-                  var storage = firebase.storage().ref().child('product_image');
-                  return ref.child($rootScope.urlParams).once('value').then(function (snapshot) {
-                    if (snapshot.val() !== null) {
-                      var productObject = snapshot.val();
-                      return productObject;
-                    }
-                  });
-                } else {
-                  return { name: "Frozen Ghost" };
-                }
-              },
-              imageUrl: function ($rootScope) {
-                if ($rootScope.urlParams) {
-                  //$rootScope.urlParams = $rootScope.urlParams.substr(1);
-                  var ref = firebase.database().ref().child('product');
-                  var storage = firebase.storage().ref().child('product_image');
-                  return storage.child($rootScope.urlParams).child('bottle.jpg').getDownloadURL().then(function (data) {
-                    return data;
-                  });
-                } else {
-                  return "http://1.bp.blogspot.com/-x0qgbWJI6ZY/TlL86fmHErI/AAAAAAAAygc/hUIEBa8DXnM/s1600/lovely-package-frozen-ghost-vodka1-e1313218158662.jpg";
-                }
-              }
-            }
+            controller: 'DashCtrl'
           }
         }
       })
@@ -127,14 +87,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(function ($injector, $location, $rootScope) {
-      var state = $injector.get('$state');
-      console.log($location.path());
-      var rootScope = $injector.get('$rootScope');
-      rootScope.urlParams = $location.path();
-      state.transitionTo('tab.dash', rootScope, {
-        reload: true
-      });
-      return $location.path();
+      // var state = $injector.get('$state');
+      // var rootScope = $injector.get('$rootScope');
+      // rootScope.urlParams = $location.path();
+      // state.transitionTo('tab.dash', rootScope, {
+      //   reload: true
+      // });
+      // return $location.path();
     });
 
   });

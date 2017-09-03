@@ -18,6 +18,7 @@
   ],
   "cordovaPlatforms": [],
   "dependencies": {
-    "angularfire": "^2.3.0"
+    "angularfire": "^2.3.0",
+    "restangular": "^1.6.1"
   }
 }
