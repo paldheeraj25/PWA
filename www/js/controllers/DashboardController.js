@@ -4,7 +4,7 @@ angular.module('starter.controllers')
     //console.log($location.host());
     var req = {
       method: 'GET',
-      url: 'http://' + $location.host() + ':8012/api/products/' + $stateParams.id,
+      url: 'http://' + $location.host() + ':5012/api/products/' + $stateParams.id,
       headers: {
         'id': $stateParams.id
       }
