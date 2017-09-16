@@ -11,12 +11,13 @@ angular.module('starter.controllers')
     };
 
     $http(req).then(function (data) {
-      if (data) {
+      if (data.data != "") {
         //console.log(data.data);
         $scope.urlParam = data.data.name;
         $scope.imageUrl = data.data.imageurl;
       } else {
-        return { name: "Frozen Ghost1" };
+        $scope.urlParam = "Frozen Ghost1";
+        $scope.imageUrl = "http://1.bp.blogspot.com/-x0qgbWJI6ZY/TlL86fmHErI/AAAAAAAAygc/hUIEBa8DXnM/s1600/lovely-package-frozen-ghost-vodka1-e1313218158662.jpg";
       }
     });
   });
