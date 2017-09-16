@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
   .controller('DashCtrl', function ($scope, $state, $stateParams, $http, $location) {
-    //console.log($location.host());
+    console.log($location.host());
     var req = {
       method: 'GET',
       url: 'http://' + $location.host() + ':5012/api/products/' + $stateParams.id,

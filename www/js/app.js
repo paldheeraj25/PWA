@@ -87,13 +87,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(function ($injector, $location, $rootScope) {
-      // var state = $injector.get('$state');
-      // var rootScope = $injector.get('$rootScope');
-      // rootScope.urlParams = $location.path();
-      // state.transitionTo('tab.dash', rootScope, {
-      //   reload: true
-      // });
-      // return $location.path();
+      var state = $injector.get('$state');
+      var rootScope = $injector.get('$rootScope');
+      rootScope.urlParams = $location.path();
+      state.transitionTo('tab.dash', rootScope, {
+        reload: true
+      });
+      return $location.path();
     });
 
   });

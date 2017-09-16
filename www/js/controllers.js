@@ -25,5 +25,6 @@ angular.module('starter.controllers', [])
     };
   })
   .controller('AuthCtrl', function ($state, $scope) {
+    console.log('ínside auth');
     var auth = this;
   });
