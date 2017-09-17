@@ -2,11 +2,15 @@ angular.module('starter.controllers')
 
   .controller('DashCtrl', function ($scope, $state, $stateParams, $http, $location) {
     console.log($location.host());
+    var _instance = this;
+    var tagid = $stateParams.id.substring(0, 14);
+    var tamperCode = $stateParams.id.substring(14, 16);
+    $scope.tamperStatus = tamperCode === "00" ? false : true;
     var req = {
       method: 'GET',
       url: 'http://' + $location.host() + ':5012/api/products/' + $stateParams.id,
       headers: {
-        'id': $stateParams.id
+        'id': tagid
       }
     };
 

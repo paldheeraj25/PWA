@@ -8,11 +8,15 @@
         <img src="{{imageUrl}}">
       </div>
       <a class="item item-icon-left item-icon-right" href="#">
-        <i class="icon ion-aperture balanced"></i>{{urlParam}} <b> - Already Opened</b><i class="icon ion-ios-unlocked-outline assertive"></i>
+        <i class="icon ion-aperture balanced"></i>{{urlParam}} <b> - Already Opened</b><i class="icon ion-ios-unlocked-outline assertive" ng-if="tamperStatus"></i>
+        <i class="icon ion-ios-locked-outline balanced" ng-if="!tamperStatus"></i>
       </a>
     </div>
-    <div class="tamper-section">
+    <div class="tamper-section" ng-if="tamperStatus">
       <h1 class="tamper-text assertive">Already Opened</h1>
+    </div>
+    <div class="tamper-section" ng-if="!tamperStatus">
+      <h1 class="tamper-text balanced">Product Sealed</h1>
     </div>
     <button class="button button-full button-stable">Re-Order 25% Off</button>
     <div class="list">
