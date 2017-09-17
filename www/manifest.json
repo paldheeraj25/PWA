@@ -1,11 +1,15 @@
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Lewiot App",
+  "short_name": "Lewiot",
   "start_url": "index.html",
   "display": "standalone",
-  "icons": [{
-    "src": "icon.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }]
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#FF9800",
+  "theme_color": "#FF9800"
 }

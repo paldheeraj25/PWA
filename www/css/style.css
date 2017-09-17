@@ -5,3 +5,14 @@
 .product-image{
   height: 365px;
 }
+.tamper-section
+{
+    z-index:100;
+    position:absolute;    
+    left:20%;
+    top:35%
+}
+.tamper-text
+{
+  font-size: xx-large;
+}
